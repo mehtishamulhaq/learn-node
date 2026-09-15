@@ -48,6 +48,7 @@ const card = document.createElement('div');
 card.className = 'user-card';
 
 card.innerHTML = `
+<button type="button" class="delete-btn" aria-label="Delete user" title="Delete user">&times;</button>
 <div>
     <h3>${user.name}</h3>
     <p><strong>ID:</strong> ${user.id}</p>
@@ -58,9 +59,28 @@ card.innerHTML = `
   </div>
 `;
 
+card.querySelector('.delete-btn').addEventListener('click', () => deleteUser(user.id));
+
 usersContainer.appendChild(card);
 
 });
+}
+
+// Delete a user
+async function deleteUser(id) {
+try {
+const response = await fetch(`/data/${id}`, { method: 'DELETE' });
+
+if (!response.ok) {
+  throw new Error('Failed to delete user');
+}
+
+users = users.filter((user) => user.id !== id);
+
+renderUsers();
+} catch (error) {
+console.error(error);
+}
 }
 
 // Handle form submission
