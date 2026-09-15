@@ -1,5 +1,5 @@
-const { createServer } = require('http');
-const data = require('./users');
+import { createServer } from 'http';
+import data from '../../constants/users.json';
 
 createServer((req, res) => {
   console.log('URL', req.url);

@@ -1,4 +1,5 @@
-const { createServer } = require('http');
+// const { createServer } = require('http');
+import { createServer } from 'http';
 
 createServer((req, res) => {
   res.writeHead(200, { 'content-Type': 'text/html' });
